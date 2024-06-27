@@ -1,0 +1,29 @@
+POST http://127.0.0.1:8000/api/login/
+Content-Type: application/json
+
+{"username": "nandu1" , "password" : "nandu1234"}
+
+###
+
+POST http://127.0.0.1:8000/api/signup/
+Content-Type: application/json
+
+{"username": "nandu1" , "password" : "nandu1234","email":"nandu1234@gmail.com"}
+
+
+###
+
+GET http://127.0.0.1:8000/api/test_token/
+Content-Type: application/json
+Authorization: Token c6ec88cade692c0aec1e10b265e4c415d8ea8e63
+
+{}
+
+###
+
+
+POST http://127.0.0.1:8000/api/logout/
+Content-Type: application/json
+Authorization: Token e9d9351caf2e717f18637ee472c7199715fadfdf
+
+{}
