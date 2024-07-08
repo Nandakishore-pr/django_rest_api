@@ -13,19 +13,22 @@
             align-items: center;
             justify-content:center;
         }
+        .form-size{
+            width: 570px;
+            height:500px;
+        }
     </style>
 </head>
 <body>
     
 
     <div class="container vertical-center ">
-        <div class="row justify-content-center shadow">
+        <div class="row justify-content-center shadow form-size">
             {% if logout_message %}
                 <p>{{ logout_message }}</p>
             {% endif %}
             <div class="col-md-6 mb-5 mt-5">
-                <h2 class="text-center mb-4">
-                    Login</h2>
+                <h2 class="text-center mb-4">login</h2>
                 <form method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                     <div class="mb-4 row">
@@ -43,7 +46,9 @@
                   
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Login</button><br><br>
-                        <a href="{% url "signup" %}" style='text-decoration:None;color:black'>don't have an account</a>
+                        <a href="#" style='text-decoration:None;color:blue'>sign in google</a>
+                        <br><br>
+                        <a href="{% url "signup" %}" style='text-decoration:None;color:blue'>don't have an account</a>
                     </div>
                 </form>
             </div>

@@ -10,10 +10,15 @@ from .serializers import UserSerializer
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from api.models import CustomUser,CustomUserManager
-
+from django.views.decorators.cache import never_cache
+from django.contrib.auth.decorators import login_required
 
 @api_view(['GET', 'POST'])
+@never_cache
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'GET':
         logout_message = request.COOKIES.get('logout_message')
         response = render(request, 'api/login.html', {'logout_message': logout_message})
@@ -42,6 +47,7 @@ def login(request):
 
 
 @api_view(['GET', 'POST'])
+@never_cache
 def signup(request):
     if request.method == 'GET':
         return render(request, 'api/signup.html')
@@ -56,6 +62,7 @@ def signup(request):
 
 
 @api_view(['GET', 'POST'])
+@never_cache
 def logout(request):
     auth_token = request.COOKIES.get('auth_token')
     if auth_token:
@@ -80,7 +87,7 @@ def test_token(request):
     return Response({'message': f'passed for {request.user.email}'})
 
 
-
+@never_cache
 def home(request):
     if 'auth_token' in request.COOKIES:
         return render(request, 'api/home.html', {'message': 'This is the home page'})
